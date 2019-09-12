@@ -1,0 +1,39 @@
+<h2> -Información de usuario</h2>
+
+<label>
+    <input placeHolder="Introduce el ID">
+</label>
+<br><br>
+
+<table *ngIf="responseUser">
+  <thead>
+    <td>ID</td>
+    <td>Nombre</td>
+    <td>Apellido</td>
+    <td>Email</td>
+    <td>Avatar</td>
+  </thead>
+  <tbody>
+  <tr *ng="let user of responseUser.data">
+      <td>{{user.id}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.avatar}}</td>
+    </tr>
+  </tbody>
+  <table>
+
+<h2> -Listado de usuarios</h2>
+<table *ngIf="responseUsers">
+  <thead>
+    <td>Nombre</td>
+    <td>Apellido</td>
+  </thead>
+<tbody>
+  <tr *ngFor="let user of responseUsers.data">
+    <td>{{user.first_name}}</td>
+    <td>{{user.last_name}}</td>
+  </tr>
+</tbody>
+<table>
