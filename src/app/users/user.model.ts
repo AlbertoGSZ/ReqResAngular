@@ -18,3 +18,21 @@
         total_pages: number;
         data: User[];
     }
+
+    export interface RequestCreate {
+        name: string;
+        surname: string;
+        email: string;
+        avatar: string;
+    }
+
+    export interface ResponseCreate {
+        name: string;
+        job: string;
+        id: string;
+        createdAt: Date;
+    }
+
+    export interface RequestID {
+        id: number
+    }

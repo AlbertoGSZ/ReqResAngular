@@ -1,0 +1,33 @@
+
+<body>
+  <div class="container">
+    <div style="border: 1px solid grey;padding:10px;"><h3>Crear usuario</h3>
+      <div>
+        <label>Nombre: &nbsp; <input placeholder="Introducir nombre" [(ngModel)]="request.name"></label>
+        <br>
+        <label>Apellido: &nbsp; <input placeholder="Introducir apellido" [(ngModel)]="request.surname"></label>
+        <br>
+        <label>Email: &nbsp; <input placeholder="Introducir email" [(ngModel)]="request.email"></label>
+        <br>
+        <label>Avatar URL: &nbsp; <input placeholder="Introducir URL de avatar" [(ngModel)]="request.avatar"></label>
+        <br>
+        <hr />
+        <button (click)="save()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<div class="container">
+  <div *ngIf="response"  style="border: 1px solid grey;padding:10px;">
+    <h4 style="text-align:center">- Usuario creado -</h4>
+    <hr />
+    <label><strong>ID: </strong>{{response.id}}</label><br>
+    <label><strong>Nombre: </strong>{{response.name}}</label><br>
+    <label><strong>Apellido: </strong>{{response.surname}}</label><br>
+    <label><strong>Email: </strong>{{response.email}}</label><br>
+    <label><strong>Avatar: </strong>{{response.avatar}}</label><br>
+    <label><strong>Fecha de creación: </strong>{{response.createdAt}}</label>
+  </div>
+</div>

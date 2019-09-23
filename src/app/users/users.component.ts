@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-import { ResponseUser } from './user.model';
-import { ResponseUsers } from './user.model';
+import { ResponseUser, ResponseUsers, RequestID} from './user.model';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -9,21 +9,24 @@ import { ResponseUsers } from './user.model';
 })
 export class UsersComponent implements OnInit {
 
+  request: RequestID = {
+    id: null
+  }
+
   responseUser: ResponseUser;
   responseUsers: ResponseUsers;
-
-  //id:string;
-  //request: RequestUpdate;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    //this.id = this.route.snapshot.paramMap.get('id');
-    //this.userService.getUser(this.id).subscribe(response => this.request = {
-    //  id: `${response.data.id}`
-    //}),
-    this.userService.getUser().subscribe(response => this.responseUser = response )
+    //this.userService.getUser().subscribe(response => this.responseUser = response )
+    //this.userService.searchByID(id).subscribe(response => this.response)
     this.userService.getUsers().subscribe(response => this.responseUsers = response )
+  }
+
+  searchByID(id:number){
+    console.log("id: "+id);
+    this.userService.search(id).subscribe(response => this.responseUser = response);
   }
 
 }

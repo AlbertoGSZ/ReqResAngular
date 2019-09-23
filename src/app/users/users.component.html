@@ -1,9 +1,11 @@
-<h2> -Información de usuario</h2>
 
-<label>
-    <input placeHolder="Introduce el ID">
-</label>
-<br><br>
+<body>
+    <div class="container">
+
+
+<div style="border: 1px solid grey;padding:10px;"><h3>Informaci&oacute;n de usuario</h3>
+  <label><input placeholder="Introducir ID" [(ngModel)]="request.id"></label>
+  <button (click)="searchByID(request.id)">Buscar</button>
 
 <table *ngIf="responseUser">
   <thead>
@@ -14,26 +16,41 @@
     <td>Avatar</td>
   </thead>
   <tbody>
-  <tr *ng="let user of responseUser.data">
-      <td>{{user.id}}</td>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.avatar}}</td>
-    </tr>
+      <td>{{responseUser.data.id}}</td>
+      <td>{{responseUser.data.first_name}}</td>
+      <td>{{responseUser.data.last_name}}</td>
+      <td>{{responseUser.data.email}}</td>
+      <td>{{responseUser.data.avatar}}</td>
   </tbody>
-  <table>
-
-<h2> -Listado de usuarios</h2>
-<table *ngIf="responseUsers">
-  <thead>
-    <td>Nombre</td>
-    <td>Apellido</td>
-  </thead>
-<tbody>
-  <tr *ngFor="let user of responseUsers.data">
-    <td>{{user.first_name}}</td>
-    <td>{{user.last_name}}</td>
-  </tr>
-</tbody>
-<table>
+</table >
+</div>
+<br><br>
+<div style="border: 1px solid grey;padding:10px;"><h3><span>Listado de usuarios</span></h3>
+  <table  *ngIf="responseUsers">
+    <thead>
+      <td>Nombre</td>
+      <td>Apellido</td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of responseUsers.data">
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <hr />
+  <div style="text-align:center">
+      Mostrar:
+      <div>
+        <button routerLink="/users">10</button>
+        &nbsp;
+        <button routerLink="/users">20</button>
+        &nbsp;
+        <button routerLink="/users">30</button>
+      </div>
+  </div>
+  </div>
+  <br><br>
+  </div>
+</body>
