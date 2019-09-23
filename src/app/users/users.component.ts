@@ -19,14 +19,32 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    //this.userService.getUser().subscribe(response => this.responseUser = response )
-    //this.userService.searchByID(id).subscribe(response => this.response)
-    this.userService.getUsers().subscribe(response => this.responseUsers = response )
+
   }
 
   searchByID(id:number){
-    console.log("id: "+id);
     this.userService.search(id).subscribe(response => this.responseUser = response);
   }
+
+  getCountedUsers(entries:number){
+    console.log(entries);
+    this.userService.getCountedUsers(entries).subscribe(response=> this.responseUsers =response);
+  }
+
+  get2CountedUsers(){
+    console.log("Hasta aqui bien");
+    this.userService.get2CountedUsers().subscribe(response=> this.responseUsers =response);
+  }
+
+  get5CountedUsers(){
+    console.log("Hasta aqui bien");
+    this.userService.get5CountedUsers().subscribe(response=> this.responseUsers =response);
+  }
+
+  get10CountedUsers(){
+    console.log("Hasta aqui bien");
+    this.userService.get10CountedUsers().subscribe(response=> this.responseUsers =response);
+  }
+
 
 }

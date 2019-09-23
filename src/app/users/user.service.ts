@@ -12,13 +12,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class UserService {
 
-  private getOneUserUrl = "https://reqres.in/api/users/4";
-  private getAllUsersUrl = "https://reqres.in/api/users";
+  private numPagEntries = 1;
+  private numRequestedEntries = 2;
 
-  //Variable de prueba
-  private getFirstSixUsersUrl = "https://reqres.in/api/users?page=1";
-  private getSecondSixUsersUrl = "https://reqres.in/api/users?page=2";
-  private getThirdSixUsersUrl = "https://reqres.in/api/users?page=3";
+  private getOneUserUrl = "https://reqres.in/api/users/4";
+  private getAllUsersUrl = "https://reqres.in/api/users?page=1&per_page=2";
 
 
   constructor(private http:HttpClient) {  }
@@ -31,6 +29,22 @@ export class UserService {
     return this.http.get<ResponseUsers>(this.getAllUsersUrl);
   }
 
+  get2CountedUsers(): Observable<ResponseUsers>{
+    return this.http.get<ResponseUsers>(`https://reqres.in/api/users?page=1&per_page=2`);
+  }
+
+  get5CountedUsers(): Observable<ResponseUsers>{
+    return this.http.get<ResponseUsers>(`https://reqres.in/api/users?page=1&per_page=5`);
+  }
+
+  get10CountedUsers(): Observable<ResponseUsers>{
+    return this.http.get<ResponseUsers>(`https://reqres.in/api/users?page=1&per_page=10`);
+  }
+
+  getCountedUsers(entries:number): Observable<ResponseUsers>{
+    return this.http.get<ResponseUsers>(`https://reqres.in/api/users?page=1&per_page=${entries}`);
+  }
+
   createUser(request:RequestCreate): Observable<ResponseCreate>{
     return this.http.post<ResponseCreate>(this.getAllUsersUrl, request);
   }
@@ -39,25 +53,6 @@ export class UserService {
     return this.http.get<ResponseUser>(`https://reqres.in/api/users/${id}`);
   }
 
-  /*get5Users(): List<Observable<ResponseUsers>>{
-  //  var aux:List<Observable<ResponseUsers>>;
-    aux.push(this.http.get<ResponseUsers>(this.getFirstSixUsersUrl));
-    return aux;
-  }
 
-  get10Users(): List<Observable<ResponseUsers>>{
-    var aux:List<Observable<ResponseUsers>>;
-    aux.push(this.http.get<ResponseUsers>(this.getFirstSixUsersUrl));
-    aux.push(this.http.get<ResponseUsers>(this.getSecondSixUsersUrl));
-    return aux;
-  }
-
-  get15Users(): List<Observable<ResponseUsers>>{
-    var aux:List<Observable<ResponseUsers>>;
-    aux.push(this.http.get<ResponseUsers>(this.getFirstSixUsersUrl));
-    aux.push(this.http.get<ResponseUsers>(this.getSecondSixUsersUrl));
-    aux.push(this.http.get<ResponseUsers>(this.getThirdSixUsersUrl));
-    return aux;
-  }*/
 
 }

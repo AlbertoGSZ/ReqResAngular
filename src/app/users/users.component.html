@@ -26,30 +26,43 @@
 </div>
 <br><br>
 <div style="border: 1px solid grey;padding:10px;"><h3><span>Listado de usuarios</span></h3>
+
+  <div style="text-align:center">
+      Mostrar:
+      <div>
+        <button routerLink="/users"><</button>
+        &nbsp;
+        <select>
+        	<option (click)="get2CountedUsers()">2</option>
+        	<option (click)="get5CountedUsers()">5</option>
+        	<option (click)="get10CountedUsers()">10</option>
+        </select>
+        &nbsp;
+        <button (click)="get2CountedUsers()">2</button>
+        &nbsp;
+        <button (click)="get5CountedUsers()">5</button>
+        &nbsp;
+        <button (click)="get10CountedUsers()">10</button>
+        &nbsp;
+        <button routerLink="/users">></button>
+      </div>
+  </div>
+  <hr />
   <table  *ngIf="responseUsers">
     <thead>
+      <td>ID</td>
       <td>Nombre</td>
       <td>Apellido</td>
     </thead>
     <tbody>
       <tr *ngFor="let user of responseUsers.data">
+        <td>{{user.id}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
       </tr>
     </tbody>
   </table>
   <br>
-  <hr />
-  <div style="text-align:center">
-      Mostrar:
-      <div>
-        <button routerLink="/users">10</button>
-        &nbsp;
-        <button routerLink="/users">20</button>
-        &nbsp;
-        <button routerLink="/users">30</button>
-      </div>
-  </div>
   </div>
   <br><br>
   </div>
