@@ -28,23 +28,25 @@
 <div style="border: 1px solid grey;padding:10px;"><h3><span>Listado de usuarios</span></h3>
 
   <div style="text-align:center">
-      Mostrar:
       <div>
-        <button routerLink="/users"><</button>
+        <button (click)="getPreviousPage()"><</button>
         &nbsp;
-        <select>
-        	<option (click)="get2CountedUsers()">2</option>
-        	<option (click)="get5CountedUsers()">5</option>
-        	<option (click)="get10CountedUsers()">10</option>
-        </select>
+
+  <!--<select ID="CodApartado" onchange="getCountedUsers(CodApartado);">
+        <option>--</option>
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+      </select> -->
+
         &nbsp;
-        <button (click)="get2CountedUsers()">2</button>
+        <button (click)="getCountedUsers(2)">2</button>
         &nbsp;
-        <button (click)="get5CountedUsers()">5</button>
+        <button (click)="getCountedUsers(5)">5</button>
         &nbsp;
-        <button (click)="get10CountedUsers()">10</button>
+        <button (click)="getCountedUsers(10)">10</button>
         &nbsp;
-        <button routerLink="/users">></button>
+        <button (click)="getNextPage()">></button>
       </div>
   </div>
   <hr />

@@ -9,6 +9,9 @@ import { ResponseUser, ResponseUsers, RequestID} from './user.model';
 })
 export class UsersComponent implements OnInit {
 
+  requestedUsersNumber:number;
+  requestedPageNumber:number;
+
   request: RequestID = {
     id: null
   }
@@ -26,25 +29,21 @@ export class UsersComponent implements OnInit {
     this.userService.search(id).subscribe(response => this.responseUser = response);
   }
 
-  getCountedUsers(entries:number){
-    console.log(entries);
-    this.userService.getCountedUsers(entries).subscribe(response=> this.responseUsers =response);
+  getCountedUsers(users:number){
+    this.requestedUsersNumber = users;
+    this.userService.getCountedUsers(users).subscribe(response=> this.responseUsers =response);
   }
 
-  get2CountedUsers(){
-    console.log("Hasta aqui bien");
-    this.userService.get2CountedUsers().subscribe(response=> this.responseUsers =response);
+  getNextPage(){
+    if (this.requestedPageNumber==null) this.requestedPageNumber = 1;
+    this.requestedPageNumber = this.requestedPageNumber+1;
+    this.userService.getUsers(this.requestedUsersNumber, this.requestedPageNumber).subscribe(response=>this.responseUsers=response);
   }
 
-  get5CountedUsers(){
-    console.log("Hasta aqui bien");
-    this.userService.get5CountedUsers().subscribe(response=> this.responseUsers =response);
+  getPreviousPage(){
+    this.requestedPageNumber = this.requestedPageNumber-1;
+    if (this.requestedPageNumber==0) this.requestedPageNumber = 1;
+    this.userService.getUsers(this.requestedUsersNumber, this.requestedPageNumber).subscribe(response=>this.responseUsers=response);
   }
-
-  get10CountedUsers(){
-    console.log("Hasta aqui bien");
-    this.userService.get10CountedUsers().subscribe(response=> this.responseUsers =response);
-  }
-
 
 }
